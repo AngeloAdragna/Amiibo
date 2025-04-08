@@ -19,7 +19,6 @@ class LoadingActivity : AppCompatActivity() {
         // Appliquer les préférences de thème et les paramètres d'affichage
         UserPreference.loadUserTheme(this)
         UserPreference.enableEdgeToEdgeTop(window)
-
         super.onCreate(savedInstanceState)
         ui = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(ui.root)

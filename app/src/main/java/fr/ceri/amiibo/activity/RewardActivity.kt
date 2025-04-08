@@ -5,7 +5,6 @@ import fr.ceri.amiibo.utils.MusicService
 import android.content.Intent
 import io.realm.Realm
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,20 +17,19 @@ import fr.ceri.amiibo.utils.UserPreference
 import fr.ceri.amiibo.databinding.ActivityRewardBinding
 import fr.ceri.amiibo.utils.Display
 import fr.ceri.amiibo.webService.User
-import org.bson.types.ObjectId
 
+
+// --------------------------- Activité des récompenses et personnalisation ---------------------------
+// RewardActivity est permet de changer de nom, de thème, de musique, de gerer l'etat de la musique et changer d'icone et réinitialiser ses données
 class RewardActivity : AppCompatActivity() {
     private lateinit var ui: ActivityRewardBinding
     private lateinit var realm: Realm
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Appliquer le thème et la barre transparente
         UserPreference.loadUserTheme(this)
         UserPreference.enableEdgeToEdgeTop(window)
         super.onCreate(savedInstanceState)
-
-        // Lier le layout
-        ui = ActivityRewardBinding.inflate(layoutInflater)
+        ui = ActivityRewardBinding.inflate(layoutInflater)   // Lier le layout
         setContentView(ui.root)
         setSupportActionBar(ui.toolbar)
 
@@ -40,9 +38,9 @@ class RewardActivity : AppCompatActivity() {
 
         // Chargement des infos utilisateur
         UserPreference.loadUserIcon(this, ui.iconImageView)
-        UserPreference.loadUserName(ui.user)
+        UserPreference.loadUserName(this, ui.user)
         UserPreference.loadUserStat("level", ui.level)
-        UserPreference.loadUserName(ui.labelName)
+        UserPreference.loadUserName(this, ui.labelName)
 
         // Mise en place des actions
         setupThemeButtons()
@@ -66,7 +64,7 @@ class RewardActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         realm.close()
-        Log.d("LifeCycle", "onDestroy called")
+
     }
 
     // --------------------------- Menu ---------------------------
@@ -124,10 +122,8 @@ class RewardActivity : AppCompatActivity() {
 
     private fun setupIconButtons() {
         val level = UserPreference.loadUserStat("level", ui.level)
-
         // Icône par défaut
         ui.iconNone.setOnClickListener { updateUserIcon("circular_bg") }
-
         // Icônes déblocables avec niveaux requis
         setupUnlockableIcon(ui.iconMario, 0, level, "mario_icon", ui.labelMario)
         setupUnlockableIcon(ui.iconPeach, 0, level, "peach_icon", ui.labelPeach)
@@ -163,7 +159,7 @@ class RewardActivity : AppCompatActivity() {
             labelView.text = ""
         } else {
             iconView.setImageResource(R.drawable.circular_bg)
-            labelView.text = "Lv$requiredLevel"
+            labelView.text = getString(R.string.level_label, requiredLevel)
             iconView.setOnClickListener(null)
         }
     }
@@ -187,12 +183,9 @@ class RewardActivity : AppCompatActivity() {
                 // Stopper l'ancienne musique
                 val stopIntent = Intent(this, MusicService::class.java).apply { action = "STOP" }
                 startService(stopIntent)
-
                 // Jouer la nouvelle musique
                 playMusic(musicFile)
-
-                // Changer icône
-                ui.btnMusic.setImageResource(R.drawable.sound_on_icon)
+                ui.btnMusic.setImageResource(R.drawable.sound_on_icon)// Changer icône
             }
         }
     }
@@ -222,7 +215,6 @@ class RewardActivity : AppCompatActivity() {
             startService(stopIntent)
             R.drawable.sound_off_icon
         }
-
         ui.btnMusic.setImageResource(icon)
     }
 
@@ -243,7 +235,6 @@ class RewardActivity : AppCompatActivity() {
     }
     private fun resetRealmData(activity: Activity) {
         val realm = Realm.getDefaultInstance()
-
         realm.executeTransactionAsync({ transactionRealm ->
             transactionRealm.deleteAll()
         }, {

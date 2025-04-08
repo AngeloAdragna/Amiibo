@@ -31,7 +31,6 @@
     <string name="bouton_manette">Bouton manettej</string>
     <string name="bouton_book">B</string>
     <string name="level">Niveau</string>
-    <string name="quizz">Dans ce quizz Amiibo, chaque bonne réponse vous rapporte +2 points, alors qu’une mauvaisevous en fait perdre -2 points. Si vous choisissez de passer une question en swipant on en cliquant sur les flèches en bas, vous perdez -1 point. Votre score est affiché en temps réel et change de couleur selon votre performance. Montez en niveau pour débloquer des icones ! À vous de jouer !</string>
     <string name="resetall">Réinitialiser votre compte</string>
     <string name="niveau">NIVEAU :</string>
     <string name="points_format">%1$d points</string>
@@ -48,4 +47,9 @@
     <string name="question_not_loaded">La question n\'est pas encore chargée.</string>
     <string name="correct_answer">Bonne réponse !</string>
     <string name="wrong_answer">Mauvaise réponse !</string>
-    </resources>
+    <string name="not_enough_selected">Il n\'y a pas assez d\'éléments avec la checkbox cochée. Seulement %1$d élément(s) sélectionné(s).</string>
+    <string name="error_message">Erreur : %1$s</string>
+    <string name="level_label">Nv%1$d</string>
+    <string name="user_text">utilisateur</string>
+    <string name="quizz">Dans ce quiz Amiibo, chaque bonne réponse vous rapporte +2 points, tandis qu’une mauvaise vous en fait perdre -2 points. Si vous choisissez de passer une question en swipant ou en cliquant sur les flèches en bas, vous perdez -1 point. Votre score est affiché en temps réel et change de couleur selon votre performance. Montez de niveau tous les 20 points pour débloquer des icônes ! À vous de jouer !</string>
+</resources>

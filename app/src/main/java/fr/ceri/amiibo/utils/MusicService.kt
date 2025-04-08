@@ -17,22 +17,16 @@ class MusicService : Service() {
     override fun onCreate() {
         super.onCreate()
         sharedPreferences = getSharedPreferences("MusicPrefs", MODE_PRIVATE)
-
         // Observer le cycle de vie global de l'application
         ProcessLifecycleOwner.get().lifecycle.addObserver(lifecycleObserver)
-
         // Lire la dernière musique jouée ou utiliser celle par défaut
         val currentMusicFile = sharedPreferences.getString("currentMusicFile", "lost_woods_zelda") ?: "lost_woods_zelda"
         playMusic(currentMusicFile)
-        //LA
-        val allPreferences = sharedPreferences.all
-        Display.showLog("on create "+allPreferences.toString())
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val action = intent?.action
         val musicFile = intent?.getStringExtra("MUSIC_FILE")
-
         when (action) {
             "PLAY" -> musicFile?.let {
                 if (!sharedPreferences.getBoolean("isMusicOn", false)) playMusic(it)
@@ -40,7 +34,6 @@ class MusicService : Service() {
             }
             "STOP" -> stopMusic()
         }
-
         return START_NOT_STICKY
     }
 
@@ -52,7 +45,6 @@ class MusicService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     // --------------------------- Contrôle de la musique ---------------------------
-
     private fun playMusic(musicFile: String) {
         // Ne pas relancer si un MediaPlayer est déjà actif
         if (mediaPlayer != null) return
@@ -72,11 +64,8 @@ class MusicService : Service() {
 
     private fun resumeMusic() {
         mediaPlayer?.let {
-
-                it.start()
-
-                saveMusicState(true, sharedPreferences.getString("currentMusicFile", "lost_woods_zelda") ?: "")
-
+            it.start()
+            saveMusicState(true, sharedPreferences.getString("currentMusicFile", "lost_woods_zelda") ?: "")
         }
     }
 
@@ -106,7 +95,6 @@ class MusicService : Service() {
     }
 
     // --------------------------- Observateur de cycle de vie ---------------------------
-
     private val lifecycleObserver = LifecycleEventObserver { _, event ->
         when (event) {
             Lifecycle.Event.ON_PAUSE -> pauseMusic()

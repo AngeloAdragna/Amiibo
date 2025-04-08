@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="bouton_manette">Bouton manette</string>
-    <string name="quizz">Dans ce quizz Amiibo, chaque bonne réponse vous rapporte +2 points, alors qu’une mauvaisevous en fait perdre -2 points. Si vous choisissez de passer une question en swipant on en cliquant sur les flèches en bas, vous perdez -1 point. Votre score est affiché en temps réel et change de couleur selon votre performance. Montez en niveau pour débloquer des icones ! À vous de jouer !</string>
+    <string name="quizz">Dans ce quiz Amiibo, chaque bonne réponse vous rapporte +2 points, tandis qu’une mauvaise vous en fait perdre -2 points. Si vous choisissez de passer une question en swipant ou en cliquant sur les flèches en bas, vous perdez -1 point. Votre score est affiché en temps réel et change de couleur selon votre performance. Montez de niveau tous les 20 points pour débloquer des icônes ! À vous de jouer !</string>
     <string name="g">G</string>
     <string name="a">A</string>
     <string name="m">m</string>

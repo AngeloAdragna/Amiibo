@@ -1,10 +1,10 @@
 package fr.ceri.amiibo.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,10 +41,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         ui = ActivityMainBinding.inflate(layoutInflater)
         setContentView(ui.root)
         setSupportActionBar(ui.toolbar)
-
         // --------------------------- Initialisation de Realm ---------------------------
         initializeRealm()
-
         // --------------------------- Configuration du RecyclerView ---------------------------
         setupRecyclerView()
     }
@@ -55,8 +53,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
         fetchAllGameSeries(realm) // Récupère toutes les séries de jeux depuis Realm
     }
 
-    // --------------------------- Méthode setupRecyclerView ---------------------------
-    // Configure le RecyclerView pour afficher les éléments de la liste des jeux Amiibo
+    // --------------------------- Méthode setupRecyclerView des jeux Amiibo ---------------------------
     private fun setupRecyclerView() {
         val gameSeries = realm.where(AmiiboGame::class.java)
             .distinct("name")
@@ -84,19 +81,17 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     // --------------------------- Méthode fetchAllGameSeries ---------------------------
     // Récupère les séries de jeux depuis l'API
     private fun fetchAllGameSeries(realm: Realm) {
-        Display.showLog("Fetching all game series") // Log pour afficher la récupération des séries
         launch(Dispatchers.Main) {
-            try {
-                // Appel API pour récupérer toutes les séries de jeux
+            try {// Appel API pour récupérer toutes les séries de jeux
                 val response = ApiClient.apiService.getAllGameSeries()
                 if (response.isSuccessful && response.body() != null) {
                     val content = response.body() ?: AmiiboHeader()
                     initGameSeries(realm, content) // Initialisation des séries de jeux dans la base de données
                 } else {
-                    Toast.makeText(applicationContext, "Erreur : La réponse n'est pas réussie", Toast.LENGTH_LONG).show()
+                    Display.showLog( "Erreur : La réponse n'est pas réussie")
                 }
             } catch (e: Exception) {
-                Toast.makeText(applicationContext, "Erreur lors de la récupération : ${e.message}", Toast.LENGTH_LONG).show()
+                Display.showLog("Erreur lors de la récupération : ${e.message}")
             }
         }
     }
@@ -168,6 +163,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
                 if (selectedKeys.isNullOrEmpty()) {
                     Display.showLog("Pas assez d'éléments sélectionnés.")
                 } else {
+                    item.isEnabled = false  // Désactiver l'item du menu pour eviter le spam
                     fetchAllAmiiboSelected(selectedKeys) {
                         val intentGameActivity = Intent(this, GameActivity::class.java)
                         startActivity(intentGameActivity)
@@ -183,7 +179,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
     // --------------------------- Méthode fetchAllAmiiboSelected ---------------------------
     // Récupère tous Amiibo et les insère ceux correspondant au gameSeries sélectionnée,
-    //      dans la base de données de manière optimisé pour un nombre plus ou mons conséquent
+    //      dans la base de données de manière optimisé pour un nombre plus ou moins conséquent
+    @SuppressLint("StringFormatInvalid")
     private fun fetchAllAmiiboSelected(amiiboGameKeys: List<String>, onComplete: () -> Unit) {
         launch(Dispatchers.IO) {
             val realmInstance = Realm.getDefaultInstance()
@@ -226,7 +223,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Display.showToast(applicationContext, "Erreur : ${e.message}")
+                    Display.showToast(applicationContext, getString(R.string.error_message))
                 }
             } finally {
                 realmInstance.close() // Ferme Realm pour éviter les fuites de mémoire

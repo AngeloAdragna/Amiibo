@@ -14,11 +14,8 @@ open class AmiiboGame (
 ) : RealmObject() {
 
     companion object {
-        // --------------------------- Noms des champs statiques ---------------------------
-        val NAME = "name" // Nom du champ "name"
-
-        // --------------------------- Création d'un AmiiboGame ---------------------------
-        // Fonction pour créer un AmiiboGame dans la base de données
+        val NAME = "name" // Nom du champ "name" statique
+        // --------------------------- Création d'un AmiiboGame en bdd ---------------------------
         fun create(realm: Realm, key: String, name: String, isSelected: Boolean) {
             val amiiboGame = realm.createObject(AmiiboGame::class.java, key)
             amiiboGame.name = name

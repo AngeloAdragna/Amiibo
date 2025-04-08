@@ -27,14 +27,14 @@ class UserPreference {
         )
 
         // --------------------------- Charger le nom de l'utilisateur ---------------------------
-        fun loadUserName(textView: TextView) {
+        fun loadUserName(context: Context, textView: TextView) {
             val realm = Realm.getDefaultInstance()
             val user = realm.where(User::class.java).findFirst()
             user?.name?.let { name ->
                 textView.text = name  // Affiche le nom de l'utilisateur
             } ?: run {
                 Display.showLog("Aucun utilisateur trouvé en base")
-                textView.text = "user"  // Affichage par défaut
+                textView.text = context.getString(R.string.user_text)  // Affichage par défaut
             }
         }
 
@@ -108,11 +108,9 @@ class UserPreference {
             val user = realm.where<User>().findFirst()
             val themeName = user?.theme ?: "MarioTheme" // Par défaut : Mario
             realm.close()
-
             // Appliquer le thème
             val themeResId = themes[themeName] ?: R.style.MarioTheme
             activity.setTheme(themeResId)
-
             // Sauvegarder le thème dans les préférences
             val sharedPreferences: SharedPreferences = activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             sharedPreferences.edit().putString(KEY_SELECTED_THEME, themeName).apply()
@@ -121,17 +119,14 @@ class UserPreference {
         // --------------------------- Mettre à jour le thème de l'utilisateur ---------------------------
         fun updateUserTheme(activity: Activity, themeName: String) {
             val realm = Realm.getDefaultInstance()
-
             realm.executeTransactionAsync({ transaction ->
                 val user = transaction.where<User>().findFirst()
                 user?.theme = themeName
             }, {
                 realm.close()
-
                 // Sauvegarder dans les préférences
                 val sharedPreferences: SharedPreferences = activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
                 sharedPreferences.edit().putString(KEY_SELECTED_THEME, themeName).apply()
-
                 // Recharger le thème et recréer l'activité
                 loadUserTheme(activity)
                 activity.recreate()

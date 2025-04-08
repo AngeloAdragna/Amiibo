@@ -6,4 +6,12 @@
         <item name="android:textColor">@color/whiteTextAndButtonColor</item>
     </style>
     <style name="Theme.Amiibo" parent="Base.Theme.Amiibo" />
+    <style name="Theme.MonApp.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+
 </resources>

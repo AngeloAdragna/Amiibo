@@ -8,7 +8,6 @@ import android.view.GestureDetector
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import fr.ceri.amiibo.R
@@ -22,31 +21,31 @@ import fr.ceri.amiibo.webService.AmiiboQuestion
 import io.realm.Realm
 
 // --------------------------- Activity de Jeu ---------------------------
-// Gère le quiz de l'application, incluant la gestion des questions, des réponses et du score
+// Gère le quiz de l'application, incluant la gestion des questions, des réponses et des statistiques
 class GameActivity : AppCompatActivity() {
     lateinit var ui: ActivityGameBinding // Interface utilisateur de l'activité
-    private lateinit var realm: Realm // Instance de Realm pour la gestion de la base de données
+    private lateinit var realm: Realm
     private lateinit var amiiboApplication: AmiiboApplication // Application Amiibo pour récupérer les questions
     private lateinit var currentQuestion: AmiiboQuestion // Question courante à afficher
 
+    // --------------------------- Variables local statistique ---------------------------
     private var questionCount = 0  // Nombre de questions posées
     private var nbCorrectAnswers = 0 // Nombre de bonnes réponses
     private var nbWrongAnswers = 0  // Nombre de mauvaises réponses
-    private val totalQuestions = 10  // Nombre total de questions (ici, 10 questions)
+    private val totalQuestions = 10  // Nombre total de questions
 
     // --------------------------- Méthode onCreate ---------------------------
-    // Initialisation de l'activité, chargement des préférences utilisateur, et configuration des éléments
     override fun onCreate(savedInstanceState: Bundle?) {
         UserPreference.loadUserTheme(this)  // Charger le thème utilisateur
         UserPreference.enableEdgeToEdgeTop(window)  // Activer le mode plein écran en haut de l'écran
         super.onCreate(savedInstanceState)
-        ui = ActivityGameBinding.inflate(layoutInflater) // Lier le layout avec l'interface utilisateur
+        ui = ActivityGameBinding.inflate(layoutInflater) // Lien interface
         setContentView(ui.root) // Définir la vue de l'activité
         setSupportActionBar(ui.toolbar) // Initialiser la barre d'outils
 
         // Charger les préférences utilisateur
         UserPreference.loadUserIcon(this, ui.iconImageView)
-        UserPreference.loadUserName(ui.user)
+        UserPreference.loadUserName(this, ui.user)
         UserPreference.updateUserStat(0, "score", ui.labelLevel)
         UserPreference.loadUserStat("score", ui.labelLevel)
 
@@ -74,7 +73,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     // --------------------------- Charger une nouvelle question ---------------------------
-    // Récupère une nouvelle question depuis l'application Amiibo
     fun loadNewQuestion(questionType: AmiiboQuestion.QuestionType? = null) {
         if (questionCount < totalQuestions) {
             amiiboApplication.getAmiiboQuestionFromRealm(questionType) { amiiboQuestion ->
@@ -86,20 +84,20 @@ class GameActivity : AppCompatActivity() {
                     theme.resolveAttribute(android.R.attr.colorAccent, typedValue, true)
                     val colorAccent = typedValue.data
 
-                    // Mettre à jour l'UI
-                    runOnUiThread {
+                    runOnUiThread { // Mettre à jour l'UI
                         // Si le joueur a swipé, ajuster le score
                         if (questionType != null) {
-                            var scoreValue = UserPreference.loadUserStat("score")
+                            val scoreValue = UserPreference.loadUserStat("score")
                             val newScore = scoreValue - 1
                             UserPreference.updateUserStat(newScore, "score", ui.labelLevel)
                             updateScoreColor(newScore)
                         }
 
-                        // Réinitialiser les couleurs de fond des options avec la couleur d'accent
+                        // Réinitialiser les couleurs de fond des options avec la couleur d'accent personnalisée
                         ui.option1.setBackgroundColor(colorAccent)
                         ui.option2.setBackgroundColor(colorAccent)
                         ui.option3.setBackgroundColor(colorAccent)
+                        //affiche la question
                         when (currentQuestion.questionType) {
                             AmiiboQuestion.QuestionType.NAME -> {
                                 ui.typeQuestion.text = getString(R.string.type_name)
@@ -172,17 +170,10 @@ class GameActivity : AppCompatActivity() {
             scoreValue -= 2 // Retire 2 points pour une mauvaise réponse
             nbWrongAnswers += 1
         }
-
-        // Met à jour la couleur du texte en fonction du score
-        updateScoreColor(scoreValue)
-
-        // Met à jour le score
-        UserPreference.updateUserStat(scoreValue, "score", ui.labelLevel)
-
+        updateScoreColor(scoreValue)    // Met à jour la couleur du texte en fonction du score
+        UserPreference.updateUserStat(scoreValue, "score", ui.labelLevel)// Met à jour le score
         highlightCorrectAnswer() // Mettre en évidence la bonne réponse
-
-        // Charger la prochaine question après un délai
-        Handler(mainLooper).postDelayed({ loadNewQuestion() }, 1000)
+        Handler(mainLooper).postDelayed({ loadNewQuestion() }, 1000) // Charger la prochaine question après un délai
     }
 
     // --------------------------- Mettre en évidence la bonne réponse ---------------------------
@@ -226,17 +217,14 @@ class GameActivity : AppCompatActivity() {
                 UserPreference.updateUserStat(newLevel, "level")
             }
         }
-
         points += score
         points = maxOf(points, 0)
         UserPreference.updateUserStat(points, "nbPoints")
         UserPreference.updateUserStat(gamesPlayed + 1, "gamesPlayed")
         UserPreference.updateUserStat(correctAnswers + nbCorrectAnswers, "correctAnswers")
         UserPreference.updateUserStat(wrongAnswers + nbWrongAnswers, "wrongAnswers")
-
         Display.showToast(this, getString(R.string.quiz_end_message, questionCount))
-
-        Handler(mainLooper).postDelayed({
+        Handler(mainLooper).postDelayed({//mets un timing
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra("score", questionCount)
             startActivity(intent)
@@ -245,7 +233,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     // --------------------------- Initialiser Realm ---------------------------
-    // Configure l'instance de Realm et charge les Amiibos sélectionnés
     private fun initializeRealm() {
         realm = Realm.getDefaultInstance()
         getAllAmiiboSelectedFromRealm(realm)

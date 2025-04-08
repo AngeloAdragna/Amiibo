@@ -17,11 +17,8 @@ open class Amiibo(
     var image: String? = null, // Image de l'Amiibo
     var name: String? = null // Nom de l'Amiibo
 ) : RealmObject() {
-
     companion object {
-
-        // --------------------------- Création d'un Amiibo ---------------------------
-        // Fonction pour créer un Amiibo dans la base de données
+        // --------------------------- Création d'un Amiibo en base de donnée ---------------------------
         fun create(realm: Realm, head: String, name: String, gameSeries: String, image: String) {
             val amiibo = realm.createObject(Amiibo::class.java, head)
             amiibo.name = name

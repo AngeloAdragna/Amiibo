@@ -6,7 +6,7 @@
     <string name="bouton_coupe">Cut button</string>
     <string name="bouton_book">Book button</string>
     <string name="level">Level</string>
-    <string name="quizz">In this Amiibo quiz, each correct answer earns you +2 points, while a wrong one causes you to lose -2 points. If you choose to skip a question by swiping on by clicking on the arrows at the bottom, you lose -1 point. Your score is displayed in real time and changes color depending on your performance. Level up to unlock icons! Up to you !</string>
+    <string name="quizz">In this Amiibo quiz, each correct answer gives you +2 points, while a wrong answer makes you lose -2 points. If you choose to skip a question by swiping or clicking on the arrows at the bottom, you lose -1 point. Your score is displayed in real-time and changes color based on your performance. Level up every 20 points to unlock icons! Ready to play?</string>
     <string name="wrong_answers">Wrong answers: %1$d</string>
     <string name="g">G</string>
     <string name="a">A</string>
@@ -39,4 +39,8 @@
     <string name="question_not_loaded">The question is not loaded yet.</string>
     <string name="correct_answer">Good answer!</string>
     <string name="wrong_answer">Wrong answer!</string>
+    <string name="not_enough_selected">There are not enough items with the checkbox checked. Only %1$d item(s) selected.</string>
+    <string name="error_message">Error : %1$</string>
+    <string name="level_label">Lv%1$d</string>
+    <string name="user_text">user</string>
 </resources>

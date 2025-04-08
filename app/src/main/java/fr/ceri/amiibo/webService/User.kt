@@ -20,7 +20,6 @@ open class User(
         fun create(realm: Realm, key: String, name: String, icon: String, theme: String? = null) {
             // Vérifier si l'utilisateur existe déjà
             val existingUser = realm.where(User::class.java).equalTo(KEY, key).findFirst()
-
             if (existingUser == null) {
                 // Créer un nouvel utilisateur avec les données fournies
                 val user = realm.createObject(User::class.java, key)

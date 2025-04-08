@@ -1,6 +1,5 @@
 package fr.ceri.amiibo.webService
 
-import fr.ceri.amiibo.webService.AmiiboHeader
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
