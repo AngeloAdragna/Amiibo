@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bouton_manette">Bouton manette</string>
+    <string name="quizz">Dans ce quizz Amiibo, chaque bonne réponse vous rapporte +2 points, alors qu’une mauvaisevous en fait perdre -2 points. Si vous choisissez de passer une question en swipant on en cliquant sur les flèches en bas, vous perdez -1 point. Votre score est affiché en temps réel et change de couleur selon votre performance. Montez en niveau pour débloquer des icones ! À vous de jouer !</string>
+    <string name="g">G</string>
+    <string name="a">A</string>
+    <string name="m">m</string>
+    <string name="i">i</string>
+    <string name="b">b</string>
+    <string name="o">o</string>
+    <string name="bouton_valider">Bouton valider</string>
+    <string name="recompenses">RECOMPENSES</string>
+    <string name="mario">Mario</string>
+    <string name="luigi">Luigi</string>
+    <string name="peach">Peach</string>
+    <string name="bowser">Bowser</string>
+    <string name="themes">THEMES</string>
+    <string name="musiques">MUSIQUES</string>
+    <string name="bouton_son">Bouton son</string>
+    <string name="zelda_lost_woods">Zelda lost woods</string>
+    <string name="pokemon_yoneuve">Pokemon Yoneuve</string>
+    <string name="marios_bros">Marios bros</string>
+    <string name="sonic_green_hills">Sonic Green hills</string>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Amiibo</string>
+    <string name="name">Name</string>
+    <string name="bouton_manette">Controller button</string>
+    <string name="bouton_coupe">Cut button</string>
+    <string name="bouton_book">Book button</string>
+    <string name="level">Level</string>
+    <string name="quizz">In this Amiibo quiz, each correct answer earns you +2 points, while a wrong one causes you to lose -2 points. If you choose to skip a question by swiping on by clicking on the arrows at the bottom, you lose -1 point. Your score is displayed in real time and changes color depending on your performance. Level up to unlock icons! Up to you !</string>
+    <string name="wrong_answers">Wrong answers: %1$d</string>
+    <string name="g">G</string>
+    <string name="a">A</string>
+    <string name="m">m</string>
+    <string name="i">i</string>
+    <string name="b">b</string>
+    <string name="o">o</string>
+    <string name="bouton_valider">Valid button</string>
+    <string name="recompenses">REWARDS</string>
+    <string name="themes">THEMES</string>
+    <string name="musiques">MUSIC</string>
+    <string name="bouton_son">Sound button</string>
+    <string name="resetall">Reset your account</string>
+    <string name="niveau">LEVEL :</string>
+    <string name="image_du_quiz">Quizz Image</string>
+    <string name="points_format">%1$d points</string>
+    <string name="points_to_next_level">Next level in %1$d points</string>
+    <string name="games_played">Games played: %1$d</string>
+    <string name="correct_answers">Correct answers: %1$d</string>
+    <string name="type_name">Who is the amiibo?</string>
+    <string name="type_gameseries">What is the game?</string>
+    <string name="error_blank_name">The name cannot be empty or composed of only spaces</string>
+    <string name="error_invalid_name">The name must contain between 2 and 12 characters without special characters</string>
+    <string name="success_update_name">Your new name is so cool!</string>
+    <string name="conf_supp">Do you confirm the deletion?</string>
+    <string name="data_reset">Data has been reset!</string>
+    <string name="data_reset_err">Ouch, a problem when resetting data</string>
+    <string name="quiz_end_message">End of the quiz! You have answered %1$d questions.</string>
+    <string name="error_loading_question">Error loading question</string>
+    <string name="question_not_loaded">The question is not loaded yet.</string>
+    <string name="correct_answer">Good answer!</string>
+    <string name="wrong_answer">Wrong answer!</string>
+</resources>

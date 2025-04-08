@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg"
+    tools:context=".activity.GameActivity">
+
+    <!--_____________________  Toolbar  _____________________-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="?attr/colorPrimary"
+        android:paddingTop="35dp"
+        android:paddingEnd="15dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title=""
+        app:titleTextColor="@color/whiteTextAndButtonColor"
+        tools:ignore="RtlSymmetry">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/circular_bg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/labelLevel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_dark"
+                android:gravity="center"
+                android:text=""
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@id/iconImageView"
+                app:layout_constraintTop_toTopOf="@id/iconImageView"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Ombres autour du label -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="-5dp"
+                android:background="@drawable/bg_dark_shadow_top"
+                app:layout_constraintTop_toTopOf="@id/labelLevel"
+                app:layout_constraintStart_toStartOf="@id/labelLevel"
+                app:layout_constraintEnd_toEndOf="@id/labelLevel" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:layout_marginTop="-10dp"
+                android:background="@drawable/bg_dark_shadow_bottom"
+                app:layout_constraintTop_toBottomOf="@id/labelLevel"
+                app:layout_constraintStart_toStartOf="@id/labelLevel"
+                app:layout_constraintEnd_toEndOf="@id/labelLevel" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="-5dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_dark_shadow_side"
+                app:layout_constraintTop_toTopOf="@id/labelLevel"
+                app:layout_constraintBottom_toBottomOf="@id/labelLevel"
+                app:layout_constraintStart_toEndOf="@id/labelLevel" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginBottom="6dp"
+                android:rotation="180"
+                android:background="@drawable/bg_dark_shadow_side"
+                app:layout_constraintTop_toTopOf="@id/labelLevel"
+                app:layout_constraintBottom_toBottomOf="@id/labelLevel"
+                app:layout_constraintStart_toStartOf="@id/labelLevel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--_____________________  Triangles décoratifs  _____________________-->
+    <View
+        android:id="@+id/triangle"
+        android:layout_width="match_parent"
+        android:layout_height="235dp"
+        android:background="@drawable/triangle"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="490dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="-33.6dp"
+        android:layout_marginTop="-121.4dp"
+        android:background="@drawable/shadow"
+        android:rotation="150.28"
+        app:layout_constraintTop_toBottomOf="@id/triangle"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_marginTop="-7dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintTop_toTopOf="@id/bottomBar" />
+
+    <!--_____________________  Barre du bas  _____________________-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingTop="10dp"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnLeft"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/bouton_book"
+            android:scaleType="fitCenter"
+            android:src="@drawable/left_arrow_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnGameAct"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnGameAct"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/bouton_manette"
+            android:scaleType="fitCenter"
+            android:src="@drawable/home_icon"
+            app:layout_constraintStart_toEndOf="@id/btnLeft"
+            app:layout_constraintEnd_toStartOf="@id/btnRight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnRight"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/bouton_coupe"
+            android:scaleType="fitCenter"
+            android:src="@drawable/right_arrow_icon"
+            app:layout_constraintStart_toEndOf="@id/btnGameAct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--_____________________  Infos utilisateur _____________________-->
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text=""
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar" />
+
+    <TextView
+        android:id="@+id/typeQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text=""
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/user"
+        app:layout_constraintStart_toStartOf="@id/toolbar" />
+
+    <!--_____________________  Zone de jeu _____________________-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_game"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/user"
+        app:layout_constraintBottom_toTopOf="@id/view2"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/quizImage"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_marginTop="50dp"
+            android:contentDescription="@string/image_du_quiz"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/option1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:padding="10dp"
+            android:text=""
+            android:textSize="18sp"
+            android:gravity="center"
+            android:background="?attr/colorAccent"
+            app:layout_constraintTop_toBottomOf="@id/quizImage"
+            app:layout_constraintStart_toStartOf="@id/quizImage"
+            app:layout_constraintEnd_toEndOf="@id/quizImage" />
+
+        <TextView
+            android:id="@+id/option2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text=""
+            android:textSize="18sp"
+            android:gravity="center"
+            android:background="?attr/colorAccent"
+            app:layout_constraintTop_toBottomOf="@id/option1"
+            app:layout_constraintStart_toStartOf="@id/option1"
+            app:layout_constraintEnd_toEndOf="@id/option1" />
+
+        <TextView
+            android:id="@+id/option3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text=""
+            android:textSize="18sp"
+            android:gravity="center"
+            android:background="?attr/colorAccent"
+            app:layout_constraintTop_toBottomOf="@id/option2"
+            app:layout_constraintStart_toStartOf="@id/option2"
+            app:layout_constraintEnd_toEndOf="@id/option2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

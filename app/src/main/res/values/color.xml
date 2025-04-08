@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blueLetterTitleColor">#08469E</color> <!-- blue letter G and music button-->
+    <color name="greenLetterTitleColor">#029502</color> <!-- green letter A-->
+    <color name="pinkLetterTitleColor">#D70076</color> <!-- pink letter m-->
+    <color name="redLetterTitleColor">#D20A00</color> <!-- pink letter ii-->
+    <color name="yellowLetterTitleColor">#EFC700</color> <!-- yellow letter bo-->
+    <color name="blackColor">#000000</color> <!-- border-->
+    <color name="whiteTextAndButtonColor">#F4F3F4</color> <!-- bg color-->
+    <color name="lockButtonColor">#495661</color> <!-- gris border boutton quizz -->
+    <color name="backgroundColor">#F2FFFFFF</color> <!-- 95% bg color-->
+    <color name="textVHColor">#824C41</color> <!-- brown text viewholder color-->
+    <color name="bGVHColor">#33D89E6D</color> <!-- sable bg viewholder 20%-->
+</resources>

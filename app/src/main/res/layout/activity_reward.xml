@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?attr/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RewardActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="?attr/colorPrimary"
+        android:paddingTop="35dp"
+        android:paddingEnd="15dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title=""
+        app:titleTextColor="@color/whiteTextAndButtonColor"
+        tools:ignore="RtlSymmetry">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|center_vertical"
+            android:layout_marginEnd="0dp"
+            android:orientation="horizontal">
+            <!-- Ajoutez d'autres éléments ici si nécessaire -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+
+                android:src="@drawable/circular_bg" />
+
+            <TextView
+                android:id="@+id/labelLevel"
+                android:layout_marginTop="-7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:textSize="22sp"
+                android:gravity="end|center_vertical"
+                android:text="@string/level" />
+            <TextView
+                android:id="@+id/level"
+                android:layout_marginTop="-7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:gravity="center|center_vertical"
+                android:text="" />
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center"
+        app:layout_constraintEnd_toEndOf="@id/iconContainer"
+        app:layout_constraintStart_toStartOf="@id/iconContainer"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:textSize="30sp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/labelName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_dark"
+            android:gravity="center"
+            android:inputType="text"
+            android:padding="10dp"
+            android:text="@string/name"
+            android:autofillHints="Name"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/validName"
+            app:layout_constraintStart_toEndOf="@id/user"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:background="@drawable/bg_dark_shadow_top"
+            app:layout_constraintTop_toTopOf="@id/labelName"
+            app:layout_constraintEnd_toEndOf="@id/labelName"
+            app:layout_constraintStart_toStartOf="@id/labelName" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="-5dp"
+            android:background="@drawable/bg_dark_shadow_bottom"
+            app:layout_constraintTop_toBottomOf="@id/labelName"
+            app:layout_constraintEnd_toEndOf="@id/labelName"
+            app:layout_constraintStart_toStartOf="@id/labelName" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="-5dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/bg_dark_shadow_side"
+            app:layout_constraintBottom_toBottomOf="@id/labelName"
+            app:layout_constraintStart_toEndOf="@id/labelName"
+            app:layout_constraintTop_toTopOf="@id/labelName" />
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="0dp"
+            android:rotation="180"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/bg_dark_shadow_side"
+            app:layout_constraintTop_toTopOf="@id/labelName"
+            app:layout_constraintBottom_toBottomOf="@id/labelName"
+            app:layout_constraintStart_toStartOf="@id/labelName" />
+
+        <ImageButton
+            android:id="@+id/validName"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/bouton_valider"
+            android:scaleType="fitCenter"
+            android:src="@drawable/valid_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <GridLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelIcon"
+        android:columnCount="4"
+        android:rowCount="4"
+        android:alignmentMode="alignMargins"
+        android:useDefaultMargins="true"
+        android:gravity="center"
+        tools:ignore="RtlSymmetry">
+
+        <!-- Icône None -->
+        <FrameLayout
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconNone"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/circular_bg"/>
+            <TextView
+                android:id="@+id/labelNone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Mario -->
+        <FrameLayout
+            android:layout_width="76dp"
+            android:layout_height="84dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconMario"
+                android:layout_width="76dp"
+                android:layout_height="82dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mario_icon"/>
+            <TextView
+                android:id="@+id/labelMario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Wario -->
+        <FrameLayout
+            android:layout_width="74dp"
+            android:layout_height="76dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconWario"
+                android:layout_width="74dp"
+                android:layout_height="76dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/wario_icon"/>
+            <TextView
+                android:id="@+id/labelWario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Toad Rose -->
+        <FrameLayout
+            android:layout_width="88dp"
+            android:layout_height="76dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconToadRose"
+                android:layout_width="88dp"
+                android:layout_height="76dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/toad_rose_icon"/>
+            <TextView
+                android:id="@+id/labelToadRose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Yoshi -->
+        <FrameLayout
+            android:layout_width="76dp"
+            android:layout_height="84dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconYoshi"
+                android:layout_width="76dp"
+                android:layout_height="84dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/yoshi_icon"/>
+            <TextView
+                android:id="@+id/labelYoshi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Toad Bleu -->
+        <FrameLayout
+            android:layout_width="72dp"
+            android:layout_height="84dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconToadBleu"
+                android:layout_width="72dp"
+                android:layout_height="84dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/toad_bleu_icon"/>
+            <TextView
+                android:id="@+id/labelToadBleu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Bowser -->
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="91dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconBowser"
+                android:layout_width="80dp"
+                android:layout_height="91dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bowser_icon"/>
+            <TextView
+                android:id="@+id/labelBowser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Luigi -->
+        <FrameLayout
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconLuigi"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/luigi_icon"/>
+            <TextView
+                android:id="@+id/labelLuigi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Daisy -->
+        <FrameLayout
+            android:layout_width="77dp"
+            android:layout_height="83dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconDaisy"
+                android:layout_width="77dp"
+                android:layout_height="83dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/daisy_icon"/>
+            <TextView
+                android:id="@+id/labelDaisy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Toad Rouge -->
+        <FrameLayout
+            android:layout_width="76dp"
+            android:layout_height="90dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconToadRouge"
+                android:layout_width="76dp"
+                android:layout_height="90dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/toad_rouge_icon"/>
+            <TextView
+                android:id="@+id/labelToadRouge"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Peach -->
+        <FrameLayout
+            android:layout_width="76dp"
+            android:layout_height="90dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconPeach"
+                android:layout_width="76dp"
+                android:layout_height="90dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/peach_icon"/>
+            <TextView
+                android:id="@+id/labelPeach"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+        <!-- Icône Waluigi -->
+        <FrameLayout
+            android:layout_width="92dp"
+            android:layout_height="92dp"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconWaluigi"
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/waluigi_icon"/>
+            <TextView
+                android:id="@+id/labelWaluigi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text=""/>
+        </FrameLayout>
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/labelIcon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/recompenses"
+        android:paddingTop="20dp"
+        android:paddingStart="10dp"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@id/iconContainer"
+        app:layout_constraintStart_toStartOf="@id/iconContainer"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <GridLayout
+        android:id="@+id/themeContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTheme"
+        android:columnCount="4"
+        android:rowCount="1"
+        android:alignmentMode="alignMargins"
+        android:useDefaultMargins="true"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnMario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mario"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnLuigi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:text="@string/luigi"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnPeach"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:text="@string/peach"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnBowser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:text="@string/bowser"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+    </GridLayout>
+    <TextView
+        android:id="@+id/labelTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/themes"
+        android:paddingTop="20dp"
+        android:paddingStart="10dp"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iconContainer"
+        tools:ignore="RtlSymmetry" />
+
+    <GridLayout
+        android:id="@+id/musicContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/themeContainer"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:paddingTop="20dp"
+        android:alignmentMode="alignMargins"
+        android:useDefaultMargins="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/labelMusic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:layout_columnWeight="1"
+            android:text="@string/musiques"
+            android:textSize="22sp"
+            tools:ignore="RtlSymmetry" />
+
+        <ImageButton
+            android:id="@+id/btnMusic"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/bouton_son"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sound_on_icon"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnMusic1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:text="@string/zelda_lost_woods"
+            android:layout_marginStart="30dp"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnMusic2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:text="@string/pokemon_yoneuve"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnMusic3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:text="@string/marios_bros"
+            android:layout_marginStart="30dp"
+            android:layout_columnWeight="1"
+            android:backgroundTint="?attr/colorAccent"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnMusic4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sonic_green_hills"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="?attr/colorAccent"
+            android:textColor="@color/whiteTextAndButtonColor"
+            android:gravity="center"/>
+    </GridLayout>
+
+    <Button
+        android:id="@+id/btnResetAll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/redLetterTitleColor"
+        android:gravity="center"
+        android:text="@string/resetall"
+        android:textColor="@color/whiteTextAndButtonColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

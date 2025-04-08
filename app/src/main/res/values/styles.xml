@@ -1,0 +1,45 @@
+<resources>
+    <!-- Thème principal de l'application -->
+    <!-- Style Mario -->
+    <style name="MarioTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/jersey25</item>
+        <item name="android:textColor">@color/whiteTextAndButtonColor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#C2352D</item>
+        <item name="colorPrimaryDark">#9B2D26</item>
+        <item name="colorAccent">#049CD8</item>
+    </style>
+
+    <style name="LuigiTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/jersey25</item>
+        <item name="android:textColor">@color/whiteTextAndButtonColor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#4CAF50</item>
+        <item name="colorPrimaryDark">#39873C</item>
+        <item name="colorAccent">#3b5bf2</item>
+    </style>
+
+    <style name="PeachTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/jersey25</item>
+        <item name="android:textColor">@color/whiteTextAndButtonColor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#f6b1d0</item>
+        <item name="colorPrimaryDark">#f192bd</item>
+        <item name="colorAccent">#e63674</item>
+    </style>
+
+    <style name="BowserTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/jersey25</item>
+        <item name="android:textColor">@color/whiteTextAndButtonColor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">#FFA310</item>
+        <item name="colorPrimaryDark">#E6522F</item>
+        <item name="colorAccent">#567620</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg"
+    android:label="@string/home_name"
+    tools:context=".activity.HomeActivity">
+
+    <!--_____________________ Toolbar _____________________-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="?attr/colorPrimary"
+        android:paddingTop="35dp"
+        android:paddingEnd="15dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title=""
+        app:titleTextColor="@color/whiteTextAndButtonColor"
+        tools:ignore="RtlSymmetry">
+
+        <!--_____________________ Layout contenant l'icône et les textes _____________________-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|center_vertical"
+            android:layout_marginEnd="0dp"
+            android:orientation="horizontal">
+
+            <!--_____________________ Icône à gauche dans la toolbar _____________________-->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/circular_bg" />
+
+            <!--_____________________ Niveau de l'utilisateur (textes) _____________________-->
+            <TextView
+                android:id="@+id/labelLevel"
+                android:layout_marginTop="-7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:textSize="22sp"
+                android:gravity="end|center_vertical"
+                android:text="@string/level" />
+
+            <TextView
+                android:id="@+id/level"
+                android:layout_marginTop="-7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:gravity="center|center_vertical"
+                android:text="" />
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!--_____________________ Triangle sous la Toolbar _____________________-->
+    <View
+        android:id="@+id/triangle"
+        android:layout_width="match_parent"
+        android:layout_height="235dp"
+        android:background="@drawable/triangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <!--_____________________ Ligne oblique (shadow) sous le triangle _____________________-->
+    <View
+        android:id="@+id/view"
+        android:layout_width="490dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="-33.6dp"
+        android:layout_marginTop="-121.4dp"
+        android:background="@drawable/shadow"
+        android:rotation="150.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/triangle" />
+
+    <!--_____________________ Ligne horizontale sous le triangle _____________________-->
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_marginTop="-7dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintTop_toTopOf="@+id/bottomBar" />
+
+    <!--_____________________ BottomBar avec les boutons _____________________-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingTop="10dp"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!--_____________________ Bouton principal à gauche (Livre) _____________________-->
+        <ImageButton
+            android:id="@+id/btnMainAct"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/book_icon"
+            android:background="?attr/selectableItemBackground"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/bouton_book"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnRewardAct"
+            app:layout_constraintHorizontal_chainStyle="spread" />
+
+        <!--_____________________ Bouton secondaire à droite (Coupe) _____________________-->
+        <ImageButton
+            android:id="@+id/btnRewardAct"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/cup_icon"
+            android:background="?attr/selectableItemBackground"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/bouton_coupe"
+            app:layout_constraintStart_toEndOf="@+id/btnMainAct"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--_____________________ Nom de l'utilisateur _____________________-->
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_weight="1"
+        android:textSize="30sp"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <!--_____________________ Texte "GAmiiBo" stylisé _____________________-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/triangle">
+
+        <!--_____________________ Lettres G, A, M, I, I, B, O stylisées _____________________-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/g"
+            android:textColor="@color/blueLetterTitleColor"
+            android:textSize="120sp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:shadowDy="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/a"
+            android:textColor="@color/greenLetterTitleColor"
+            android:textSize="120sp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:shadowDy="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/m"
+            android:textColor="@color/pinkLetterTitleColor"
+            android:textSize="120sp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:shadowDy="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i"
+            android:textColor="@color/redLetterTitleColor"
+            android:textSize="120sp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:shadowDy="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i"
+            android:textColor="@color/redLetterTitleColor"
+            android:textSize="120sp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:shadowDy="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/b"
+            android:textColor="@color/yellowLetterTitleColor"
+            android:textSize="120sp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:shadowDy="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/o"
+            android:textColor="@color/yellowLetterTitleColor"
+            android:textSize="120sp"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:shadowDy="1"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
