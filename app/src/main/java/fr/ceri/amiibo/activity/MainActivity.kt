@@ -224,6 +224,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Display.showToast(applicationContext, getString(R.string.error_message))
+
                 }
             } finally {
                 realmInstance.close() // Ferme Realm pour éviter les fuites de mémoire
