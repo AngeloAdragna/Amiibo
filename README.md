@@ -16,7 +16,7 @@ Ce projet est développé en kotlin sur Android Studio.
 
 
 ## Aperçu
-[Regardez la vidéo](amiibo_demo_app-Angelo_Adragna)
+[Regardez la vidéo](amiibo_demo_app.mkv)
 
 
 
