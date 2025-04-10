@@ -200,15 +200,11 @@ class RewardActivity : AppCompatActivity() {
 
     private fun onOffMusic(view: View) {
         val sharedPreferences = getSharedPreferences("MusicPrefs", MODE_PRIVATE)
-        var currentMusic = sharedPreferences.getString("currentMusicFile", "lost_woods_zelda") ?: "lost_woods_zelda"
+        val currentMusic = sharedPreferences.getString("currentMusicFile", "lost_woods_zelda") ?: "lost_woods_zelda"
         val isMusicOn = sharedPreferences.getBoolean("isMusicOn", false)
 
         val icon = if (!isMusicOn) {
-            val playIntent = Intent(this, MusicService::class.java).apply {
-                action = "PLAY"
-                putExtra("MUSIC_FILE", currentMusic)
-            }
-            startService(playIntent)
+            playMusic(currentMusic)
             R.drawable.sound_on_icon
         } else {
             val stopIntent = Intent(this, MusicService::class.java).apply { action = "STOP" }

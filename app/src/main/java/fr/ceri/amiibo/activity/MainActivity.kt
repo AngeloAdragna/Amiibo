@@ -27,7 +27,6 @@ import kotlinx.coroutines.withContext
 // --------------------------- Activité principale ---------------------------
 // La MainActivity est l'écran principal qui gère la liste des jeux Amiibo, avec la possibilité de sélectionner des cases à cocher.
 class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
-
     private lateinit var ui: ActivityMainBinding
     private lateinit var realm: Realm
     private var allSelected = false // Variable pour savoir si toutes les cases sont sélectionnées
@@ -54,6 +53,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope by MainScope() {
     }
 
     // --------------------------- Méthode setupRecyclerView des jeux Amiibo ---------------------------
+    // Récupère depuis la bdd realm pour afficher dans le recycler
     private fun setupRecyclerView() {
         val gameSeries = realm.where(AmiiboGame::class.java)
             .distinct("name")
